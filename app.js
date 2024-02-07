@@ -14,7 +14,7 @@ var deleteTimeboxRouter = require('./routes/deleteTimebox');
 var getSchedulesRouter = require('./routes/getSchedules');
 var updateGoalRouter = require('./routes/updateGoal');
 var updateScheduleRouter = require('./routes/updateSchedule');
-var updateTimeboxRouter = require('./routes/updateTimebox');
+var updateTimeboxRouter = require('./routes/updateTimeBox');
 var createRecordedTimeboxRouter = require('./routes/createRecordedTimebox');
 var app = express();
 
