@@ -1,0 +1,76 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DB_DIRECT_URL")
+}
+
+model Schedule {
+  id                Int               @id @default(autoincrement())
+  boxSizeNumber     Int
+  name              String
+  boxSizeUnit       String
+  endDate           String
+  wakeupTime        String
+  userEmail         String
+  goals             Goal[]
+  timeboxes         TimeBox[]
+  recordedTimeboxes RecordedTimeBox[]
+}
+
+model Goal {
+  id         Int       @id @default(autoincrement())
+  priority   Int
+  name       String
+  targetDate DateTime
+  timeboxes  TimeBox[]
+  schedule   Schedule? @relation(fields: [scheduleID], references: [id])
+  scheduleID Int?
+}
+
+model TimeBox {
+  id                Int               @id @default(autoincrement())
+  numberOfBoxes     Int
+  title             String
+  description       String
+  color             String
+  startTime         DateTime          @db.Timestamptz
+  endTime           DateTime          @db.Timestamptz
+  reoccuring        Reoccuring?       @relation(fields: [reoccuringID], references: [id])
+  reoccuringID      Int?
+  goal              Goal?             @relation(fields: [goalID], references: [id])
+  goalID            Int?
+  schedule          Schedule?         @relation(fields: [scheduleID], references: [id])
+  scheduleID        Int?
+  recordedTimeBoxes RecordedTimeBox[]
+}
+
+model Reoccuring {
+  id               Int       @id @default(autoincrement())
+  reoccurFrequency String
+  weeklyDay        Int?
+  TimeBox          TimeBox[]
+}
+
+model RecordedTimeBox {
+  id                Int       @id @default(autoincrement())
+  recordedStartTime DateTime  @db.Timestamptz
+  recordedEndTime   DateTime  @db.Timestamptz
+  timeBox           TimeBox?  @relation(fields: [timeBoxID], references: [id])
+  timeBoxID         Int?
+  schedule          Schedule? @relation(fields: [scheduleID], references: [id])
+  scheduleID        Int?
+}
+
+model CompletedHabit {
+  id                Int               @id @default(autoincrement())
+  userEmail         String
+  title             String
+  date              DateTime
+}
