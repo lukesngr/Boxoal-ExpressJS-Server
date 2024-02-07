@@ -1,34 +1,39 @@
 import prisma from "@/modules/prismaClient";
+import express from 'express';
 
-export default async function handler(req, res) {
-    try {
-      const data = req.body;
+const router = express.Router();
 
-      const recordedTimeBoxes = await prisma.timeBox.findUnique({
-        where: { id: data.id, recordedTimeBoxes: { some: {} } }, 
-        select: { recordedTimeBoxes: { select: { id: true } } }
-      })
+router.post('/', async (req, res) => {
+  try {
+    const data = req.body;
 
-      for(const recordedTimeBox of recordedTimeBoxes.recordedTimeBoxes) {
-        await prisma.recordedTimeBox.delete({
-          where: {
-            id: recordedTimeBox.id
-          }
-        })
-      }
+    const recordedTimeBoxes = await prisma.timeBox.findUnique({
+      where: { id: data.id, recordedTimeBoxes: { some: {} } },
+      select: { recordedTimeBoxes: { select: { id: true } } }
+    });
 
-      await prisma.timeBox.delete({
+    for (const recordedTimeBox of recordedTimeBoxes.recordedTimeBoxes) {
+      await prisma.recordedTimeBox.delete({
         where: {
-          id: data.id
+          id: recordedTimeBox.id
         }
       });
-
-      res.status(200).json({ message: 'TimeBox deleted successfully' });
-    } catch (error) {
-      console.error('Error deleting timebox:', error);
-  
-      res.status(500).json({ error: 'Internal Server Error' });
-    } finally {
-      await prisma.$disconnect();
     }
+
+    await prisma.timeBox.delete({
+      where: {
+        id: data.id
+      }
+    });
+
+    res.status(200).json({ message: 'TimeBox deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting timebox:', error);
+
+    res.status(500).json({ error: 'Internal Server Error' });
+  } finally {
+    await prisma.$disconnect();
   }
+});
+
+export default router;
