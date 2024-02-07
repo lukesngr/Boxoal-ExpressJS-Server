@@ -1,6 +1,5 @@
-import prisma from "@/modules/prismaClient";
-import express from 'express';
-
+const express = require('express');
+const prisma = require('../modules/prismaClient');
 const router = express.Router();
 
 router.post('/', async (req, res) => {
@@ -20,4 +19,4 @@ router.post('/', async (req, res) => {
   }
 });
 
-export default router;
+module.exports = router;
