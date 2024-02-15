@@ -17,6 +17,7 @@ var updateGoalRouter = require('./routes/updateGoal');
 var updateScheduleRouter = require('./routes/updateSchedule');
 var updateTimeboxRouter = require('./routes/updateTimeBox');
 var createRecordedTimeboxRouter = require('./routes/createRecordedTimebox');
+var oauthcallbackRouter = require('./routes/oauthcallback');
 var app = express();
 
 
@@ -41,5 +42,6 @@ app.use('/updateGoal', updateGoalRouter);
 app.use('/updateSchedule', updateScheduleRouter);
 app.use('/updateTimebox', updateTimeboxRouter);
 app.use('/createRecordedTimebox', createRecordedTimeboxRouter);
+app.use('/oauthcallback', oauthcallbackRouter);
 
 module.exports = app;
