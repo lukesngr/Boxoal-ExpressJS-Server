@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/', async (req, res) => {
   try {
     const data = req.body;
-    const state = 'ipzmuRV+qYj5r9LiNPks2dVsM+R7XFNInHXWFYMxSC0=';
+    const state = 'ipzmuRV+qYj5r9LiNPks2dVsM+R7XFNInHXWFYMxSC0';
     const client_id = 'a2dfc2d05c3a866886b7';
     const client_secret = 'c9c861933969c96d454f5fc66577468b6a89cec5';
 
