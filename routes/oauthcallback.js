@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
     if(data.state == state) {
       axios.post("https://github.com/login/oauth/access_token", {client_id, client_secret, code: data.code})
       .then(response => {
-        res.redirect('boxoal://login?access_token=' + response.data.access_token)
+        res.redirect('boxoal://login?access_token=' + response.data.split('=')[1].split('&')[0])
       }).catch(error => {
         console.log(error)
       })
