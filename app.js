@@ -20,7 +20,7 @@ var createRecordedTimeboxRouter = require('./routes/createRecordedTimebox');
 var oauthcallbackRouter = require('./routes/oauthcallback');
 var app = express();
 
-const whitelist = ['http://localhost:3000']; // assuming front-end application is running on localhost port 3000
+const whitelist = ['http://localhost:3000', 'https://github.com']; // assuming front-end application is running on localhost port 3000
 
 const corsOptions = {
   origin: function (origin, callback) {
