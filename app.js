@@ -32,8 +32,6 @@ const corsOptions = {
   }
 }
 
-app.use(cors(corsOptions));
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -41,7 +39,20 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/getSchedules', schedulesRouter);
+app.use('/getSchedules', cors(corsOptions), schedulesRouter);
+app.use('/createGoal', cors(corsOptions), createGoalRouter);
+app.use('/createSchedule', cors(corsOptions), createScheduleRouter);
+app.use('/createTimebox', cors(corsOptions), createTimeboxRouter);
+app.use('/deleteGoal', cors(corsOptions), deleteGoalRouter);
+app.use('/deleteSchedule', cors(corsOptions), deleteScheduleRouter);
+app.use('/deleteTimebox', cors(corsOptions), deleteTimeboxRouter);
+app.use('/getSchedules', cors(corsOptions), getSchedulesRouter);
+app.use('/updateGoal', cors(corsOptions), updateGoalRouter);
+app.use('/updateSchedule', cors(corsOptions), updateScheduleRouter);
+app.use('/updateTimebox', cors(corsOptions), updateTimeboxRouter);
+app.use('/createRecordedTimebox', cors(corsOptions), createRecordedTimeboxRouter);
+app.use('/oauthcallback', cors(), oauthcallbackRouter);
+/*app.use('/getSchedules', schedulesRouter);
 app.use('/createGoal', createGoalRouter);
 app.use('/createSchedule', createScheduleRouter);
 app.use('/createTimebox', createTimeboxRouter);
@@ -53,6 +64,6 @@ app.use('/updateGoal', updateGoalRouter);
 app.use('/updateSchedule', updateScheduleRouter);
 app.use('/updateTimebox', updateTimeboxRouter);
 app.use('/createRecordedTimebox', createRecordedTimeboxRouter);
-app.use('/oauthcallback', oauthcallbackRouter);
+app.use('/oauthcallback', cors(), oauthcallbackRouter);*/
 
 module.exports = app;
