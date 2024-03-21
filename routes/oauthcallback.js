@@ -1,9 +1,10 @@
 const express = require('express');
 const axios = require('axios');
+const cors = require('cors');
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
+router.get('/', cors(), async (req, res) => {
   try {
     const data = req.query;
     const state = 'ipzmuRVqYj5r9LiNPks2dVsMR7XFNInHXWFYMxSC0';
