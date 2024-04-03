@@ -24,13 +24,24 @@ const whitelist = ['http://localhost:3000', 'https://github.com']; // assuming f
 
 const corsOptions = {
   origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS '+origin))
-    }
-  }
-}
+      // Check if the request is coming from a mobile device
+      let isMobile = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile/.test(origin);
+      // If the request is from a mobile device, allow any origin
+      if (isMobile) {
+          callback(null, true);
+      } else {
+          // Otherwise, check if the origin is in the allowed list
+          if (whitelist.includes(origin)) {
+              callback(null, true);
+          } else {
+              callback(new Error('Not allowed by CORS'));
+          }
+      }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+};
 
 app.use(cors());
 app.use(logger('dev'));
