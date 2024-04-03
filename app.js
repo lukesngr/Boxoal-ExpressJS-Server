@@ -20,28 +20,17 @@ var createRecordedTimeboxRouter = require('./routes/createRecordedTimebox');
 var oauthcallbackRouter = require('./routes/oauthcallback');
 var app = express();
 
-const whitelist = ['http://localhost:3000', 'https://github.com']; // assuming front-end application is running on localhost port 3000
+const whitelist = ['http://localhost:3000', 'https://github.com', 'BoxoalApp-1233']; // assuming front-end application is running on localhost port 3000
 
 const corsOptions = {
   origin: function (origin, callback) {
-      // Check if the request is coming from a mobile device
-      let isMobile = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile/.test(origin);
-      // If the request is from a mobile device, allow any origin
-      if (isMobile) {
-          callback(null, true);
-      } else {
-          // Otherwise, check if the origin is in the allowed list
-          if (whitelist.includes(origin)) {
-              callback(null, true);
-          } else {
-              callback(new Error('Not allowed by CORS'));
-          }
-      }
-  },
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
-};
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS '+origin))
+    }
+  }
+}
 
 app.use(cors());
 app.use(logger('dev'));
