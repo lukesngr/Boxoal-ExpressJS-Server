@@ -3,7 +3,7 @@ const prisma = require('../modules/prismaClient');
 
 const router = express.Router();
 
-router.post('/', async (req, res) => {
+router.put('/', async (req, res) => {
   try {
     const data = req.body;
     await prisma.goal.update({

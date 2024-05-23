@@ -6,7 +6,6 @@ const router = express.Router();
 router.put('/', async (req, res) => {
   try {
     const data = req.body;
-    console.log(data, req);
     await prisma.timeBox.update({
       where: {
         id: data.id,
