@@ -50,7 +50,7 @@ app.use('/deleteTimebox', cors(corsOptions), deleteTimeboxRouter);
 app.use('/getSchedules', cors(corsOptions), getSchedulesRouter);
 app.use('/updateGoal', cors(corsOptions), updateGoalRouter);
 app.use('/updateSchedule', cors(corsOptions), updateScheduleRouter);
-app.use('/updateTimebox', cors(corsOptions), updateTimeboxRouter);
+app.use('/updateTimeBox', cors(corsOptions), updateTimeboxRouter);
 app.use('/createRecordedTimebox', cors(corsOptions), createRecordedTimeboxRouter);
 app.use('/oauthcallback', cors(), oauthcallbackRouter);
 /*app.use('/getSchedules', schedulesRouter);

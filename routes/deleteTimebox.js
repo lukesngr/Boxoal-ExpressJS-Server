@@ -12,12 +12,14 @@ router.post('/', async (req, res) => {
       select: { recordedTimeBoxes: { select: { id: true } } }
     });
 
-    for (const recordedTimeBox of recordedTimeBoxes.recordedTimeBoxes) {
-      await prisma.recordedTimeBox.delete({
-        where: {
-          id: recordedTimeBox.id
-        }
-      });
+    if (recordedTimeBoxes && recordedTimeBoxes.recordedTimeBoxes.length > 0) {
+      for (const recordedTimeBox of recordedTimeBoxes.recordedTimeBoxes) {
+        await prisma.recordedTimeBox.delete({
+          where: {
+            id: recordedTimeBox.id
+          }
+        });
+      }
     }
 
     await prisma.timeBox.delete({
