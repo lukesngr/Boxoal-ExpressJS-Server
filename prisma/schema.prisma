@@ -17,7 +17,6 @@ model Schedule {
   boxSizeNumber     Int
   name              String
   boxSizeUnit       String
-  endDate           String
   wakeupTime        String
   userEmail         String
   goals             Goal[]
