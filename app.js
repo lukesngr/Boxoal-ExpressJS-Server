@@ -53,6 +53,7 @@ app.use('/updateSchedule', cors(corsOptions), updateScheduleRouter);
 app.use('/updateTimeBox', cors(corsOptions), updateTimeboxRouter);
 app.use('/createRecordedTimebox', cors(corsOptions), createRecordedTimeboxRouter);
 app.use('/oauthcallback', cors(), oauthcallbackRouter);
+app.use('/clearRecording', cors(corsOptions), clearRecordingRouter);
 /*app.use('/getSchedules', schedulesRouter);
 app.use('/createGoal', createGoalRouter);
 app.use('/createSchedule', createScheduleRouter);
