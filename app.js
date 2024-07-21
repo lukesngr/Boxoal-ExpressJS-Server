@@ -18,6 +18,7 @@ var updateScheduleRouter = require('./routes/updateSchedule');
 var updateTimeboxRouter = require('./routes/updateTimeBox');
 var createRecordedTimeboxRouter = require('./routes/createRecordedTimebox');
 var oauthcallbackRouter = require('./routes/oauthcallback');
+var clearRecordingRouter = require('./routes/clearRecording');
 var app = express();
 
 const whitelist = ['http://localhost:3000', 'https://github.com', 'BoxoalApp-1233']; // assuming front-end application is running on localhost port 3000
