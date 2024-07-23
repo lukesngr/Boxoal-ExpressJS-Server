@@ -18,7 +18,7 @@ model Schedule {
   name              String
   boxSizeUnit       String
   wakeupTime        String
-  userEmail         String
+  userUUID          String
   goals             Goal[]
   timeboxes         TimeBox[]
   recordedTimeboxes RecordedTimeBox[]

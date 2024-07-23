@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
         const data = req.body;
         const schedules = await prisma.schedule.findMany({
             where: {
-                userEmail: data.userEmail,
+                userUUID: data.userUUID,
             },
             select: {
                 id: true,
