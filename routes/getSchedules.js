@@ -12,14 +12,14 @@ router.get('/', async (req, res) => {
             },
             select: {
                 id: true,
-                name: true,
+                title: true,
                 boxSizeNumber: true,
                 boxSizeUnit: true,
                 wakeupTime: true,
                 goals: {
                     select: {
                         id: true,
-                        name: true,
+                        title: true,
                         priority: true,
                         targetDate: true,
                         timeboxes: {
