@@ -17,6 +17,9 @@ router.get('/', async (req, res) => {
                 boxSizeUnit: true,
                 wakeupTime: true,
                 goals: {
+                    orderBy: {
+                        priority: 'asc'
+                    },
                     select: {
                         id: true,
                         title: true,
@@ -85,6 +88,7 @@ router.get('/', async (req, res) => {
                                 timeBox: { select: { title: true, description: true }}
                             }
                         },
+                        goalID: true,
                         reoccuring: {
                             select: {
                                 id: true,
