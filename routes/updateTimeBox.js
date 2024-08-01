@@ -5,12 +5,13 @@ const router = express.Router();
 
 router.put('/', async (req, res) => {
   try {
-    const data = req.body;
+    let data = req.body;
+    let {id, ...alteredData} = data;
     await prisma.timeBox.update({
       where: {
-        id: data.id,
+        id: id,
       },
-      data: data,
+      data: alteredData,
     });
     res.status(200).json({ message: 'Updated TimeBox successfully' });
   } catch (error) {
