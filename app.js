@@ -18,6 +18,7 @@ var updateTimeboxRouter = require('./routes/updateTimeBox');
 var createRecordedTimeboxRouter = require('./routes/createRecordedTimebox');
 var oauthcallbackRouter = require('./routes/oauthcallback');
 var clearRecordingRouter = require('./routes/clearRecording');
+var addExperience = require('./routes/addExperience');
 var app = express();
 
 app.use(logger('dev'));
@@ -41,5 +42,6 @@ app.use('/updateTimeBox', updateTimeboxRouter);
 app.use('/createRecordedTimebox', createRecordedTimeboxRouter);
 app.use('/oauthcallback', oauthcallbackRouter);
 app.use('/clearRecording', clearRecordingRouter);
+app.use('/addExperience', addExperience);
 
 module.exports = app;

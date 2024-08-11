@@ -68,3 +68,8 @@ model RecordedTimeBox {
   schedule          Schedule? @relation(fields: [scheduleID], references: [id])
   scheduleID        Int?
 }
+
+model XP {
+  points            Float
+  userUUID          String  @id
+}
