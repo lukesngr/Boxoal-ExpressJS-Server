@@ -6,23 +6,24 @@ const router = express.Router();
 router.post('/', async (req, res) => {
   try {
     const data = req.body;
-    const experienceRecord = await prisma.xp.findUnique({
+    console.log(data)
+    const experienceRecord = await prisma.xP.findUnique({
         where: {
           userUUID: data.userUUID,
         },
     });
 
     if(experienceRecord === null) {
-        await prisma.xp.create({
+        await prisma.xP.create({
             data: data,
         });
     }else{
-        await prisma.xp.update({
+        await prisma.xP.update({
             where: {
                 userUUID: data.userUUID,
             },
-            data: data}
-        );
+            data: {points: { increment: data.points}}
+        });
     }
     res.status(200).json({ message: 'XP added' });
   } catch (error) {
