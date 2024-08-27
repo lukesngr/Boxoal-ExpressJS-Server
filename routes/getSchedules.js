@@ -5,7 +5,8 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
     try {
-        const data = req.body;
+        const data = req.query;
+        console.log(data);
         const schedules = await prisma.schedule.findMany({
             where: {
                 userUUID: data.userUUID,

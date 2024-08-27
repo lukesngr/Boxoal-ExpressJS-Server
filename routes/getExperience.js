@@ -5,11 +5,13 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
     try {
-        const data = req.body;
+        const data = req.query;
+        console.log(data);
         const points = await prisma.xP.findUnique({
             where: {
                 userUUID: data.userUUID,
-        }});
+            }
+        });
         res.json(points);
     } catch (error) {
         console.error(error);
