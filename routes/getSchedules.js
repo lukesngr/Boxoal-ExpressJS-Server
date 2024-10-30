@@ -31,12 +31,7 @@ router.get('/', async (req, res) => {
                                 startTime: 'asc'
                             },
                             where: {
-                                OR: [
-                                        {AND: [
-                                            {reoccuringID: null}, 
-                                            {startTime: {gte: data.startOfWeek, lte: data.endOfWeek}}
-                                        ]}, {NOT: {reoccuringID: null}}
-                                ]
+                                OR: [{reoccuringID: null}, {NOT: {reoccuringID: null}}]
                             },
                             select: {
                                 title: true,
