@@ -53,7 +53,8 @@ router.get('/', async (req, res) => {
                                         reoccurFrequency: true,
                                         weeklyDay: true
                                     }
-                                }
+                                },
+                                goalPercentage: true
                             },
                         }
                     },
