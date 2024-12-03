@@ -14,10 +14,7 @@ datasource db {
 
 model Schedule {
   id                Int               @id @default(autoincrement())
-  boxSizeNumber     Int
   title             String
-  boxSizeUnit       String
-  wakeupTime        String
   userUUID          String
   goals             Goal[]
   timeboxes         TimeBox[]
@@ -69,7 +66,10 @@ model RecordedTimeBox {
   scheduleID        Int?
 }
 
-model XP {
-  points            Float
+model Profile {
   userUUID          String  @id
+  boxSizeUnit       String
+  boxSizeNumber     Int
+  wakeupTime        String
+  points            Float
 }

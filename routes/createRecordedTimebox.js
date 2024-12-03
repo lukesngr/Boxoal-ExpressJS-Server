@@ -11,6 +11,7 @@ router.post('/', async (req, res) => {
     });
     res.status(200).json({ message: 'Recorded TimeBox created successfully' });
   } catch (error) {
+    console.log(error, error.message);
     res.status(500).json({ error: error.message });
   } finally {
     await prisma.$disconnect();
