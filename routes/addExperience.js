@@ -7,25 +7,25 @@ router.post('/', async (req, res) => {
   try {
     const data = req.body;
     console.log(data)
-    const experienceRecord = await prisma.xP.findUnique({
+    const experienceRecord = await prisma.profile.findUnique({
         where: {
           userUUID: data.userUUID,
         },
     });
 
     if(experienceRecord === null) {
-        await prisma.xP.create({
+        await prisma.profile.create({
             data: data,
         });
     }else{
-        await prisma.xP.update({
+        await prisma.profile.update({
             where: {
                 userUUID: data.userUUID,
             },
             data: {points: { increment: data.points}}
         });
     }
-    res.status(200).json({ message: 'XP added' });
+    res.status(200).json({ message: 'Experience added' });
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
     console.log(error);
