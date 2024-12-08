@@ -14,9 +14,6 @@ router.get('/', async (req, res) => {
             select: {
                 id: true,
                 title: true,
-                boxSizeNumber: true,
-                boxSizeUnit: true,
-                wakeupTime: true,
                 goals: {
                     orderBy: {
                         priority: 'asc'
