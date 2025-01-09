@@ -8,7 +8,7 @@ router.put('/', async (req, res) => {
     let data = req.body;
     await prisma.profile.update({
       where: {
-        id: id,
+        userUUID: userUUID,
       },
       data: data,
     });
