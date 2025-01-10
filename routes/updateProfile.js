@@ -6,6 +6,19 @@ const router = express.Router();
 router.put('/', async (req, res) => {
   try {
     let data = req.body;
+
+    const profile = await prisma.profile.findUnique({
+      where: {
+          userUUID: data.userUUID,
+      }
+    });
+
+    if(profile === null) {
+      await prisma.profile.create({
+        data: data,
+      });
+    }
+
     await prisma.profile.update({
       where: {
         userUUID: userUUID,
