@@ -73,4 +73,5 @@ model Profile {
   wakeupTime        String
   points            Float
   scheduleID        Int
+  scheduleIndex     Int
 }
