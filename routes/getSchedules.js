@@ -51,7 +51,8 @@ router.get('/', async (req, res) => {
                                         weeklyDay: true
                                     }
                                 },
-                                goalPercentage: true
+                                goalPercentage: true,
+                                goalID: true
                             },
                         }
                     },
