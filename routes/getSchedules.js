@@ -112,7 +112,9 @@ router.get('/', async (req, res) => {
                             select: {
                                 id: true, 
                                 title: true, 
-                                description: true
+                                description: true,
+                                startTime: true,
+                                endTime: true,
                             }
                         }
                     }
