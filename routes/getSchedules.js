@@ -24,7 +24,8 @@ router.get('/', async (req, res) => {
                         priority: true,
                         targetDate: true,
                         completed: true,
-                        completedDate: true,
+                        completedOn: true,
+                        active: true,
                         partOfLine: true,
                         timeboxes: {
                             orderBy: {

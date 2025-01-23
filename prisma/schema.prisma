@@ -27,6 +27,7 @@ model Goal {
   title      String
   completed  Boolean
   completedOn DateTime
+  active     Boolean
   partOfLine Int
   targetDate DateTime
   timeboxes  TimeBox[]
