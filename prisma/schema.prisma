@@ -25,6 +25,9 @@ model Goal {
   id         Int       @id @default(autoincrement())
   priority   Int
   title      String
+  completed  Boolean
+  completedOn DateTime
+  partOfLine Int
   targetDate DateTime
   timeboxes  TimeBox[]
   schedule   Schedule? @relation(fields: [scheduleID], references: [id])
@@ -71,7 +74,6 @@ model Profile {
   boxSizeUnit       String
   boxSizeNumber     Int
   wakeupTime        String
-  points            Float
   scheduleID        Int
   scheduleIndex     Int
 }
