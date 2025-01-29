@@ -22,6 +22,7 @@ var addExperience = require('./routes/addExperience');
 var getProfileRouter = require('./routes/getProfile');
 var updateProfileRouter = require('./routes/updateProfile');
 var createProfileRouter = require('./routes/createProfile');
+var setNextGoalToActiveRouter = require('./routes/setNextGoalToActive');
 var app = express();
 
 app.use(logger('dev'));
@@ -49,5 +50,6 @@ app.use('/addExperience', addExperience);
 app.use('/getProfile', getProfileRouter);
 app.use('/updateProfile', updateProfileRouter);
 app.use('/createProfile', createProfileRouter);
+app.use('/setNextGoalToActive', setNextGoalToActiveRouter);
 
 module.exports = app;
