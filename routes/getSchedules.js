@@ -15,63 +15,26 @@ router.get('/', async (req, res) => {
                 id: true,
                 title: true,
                 goals: {
-                    orderBy: {
-                        priority: 'asc'
-                    },
-                    select: {
-                        id: true,
-                        title: true,
-                        priority: true,
-                        targetDate: true,
-                        completed: true,
-                        completedOn: true,
-                        active: true,
-                        partOfLine: true,
-                        timeboxes: {
-                            orderBy: {
-                                startTime: 'asc'
-                            },
-                            where: {
-                                OR: [{reoccuringID: null}, {NOT: {reoccuringID: null}}]
-                            },
-                            select: {
-                                title: true,
-                                description: true,
-                                startTime: true,
-                                endTime: true,
-                                numberOfBoxes: true,
-                                color: true,
-                                id: true,
-                                recordedTimeBoxes: {
-                                    select: {
-                                        id: true,
-                                        timeBox: { select: { id: true, title: true, description: true }}
-                                    }
-                                },
-                                reoccuring: {
-                                    select: {
-                                        id: true,
-                                        reoccurFrequency: true,
-                                        weeklyDay: true
-                                    }
-                                },
-                                goalPercentage: true,
-                                goalID: true
-                            },
-                        }
-                    },
-                },
-                timeboxes: {
-                    orderBy: {
+                  orderBy: {
+                    priority: 'asc'
+                  },
+                  select: {
+                    id: true,
+                    title: true,
+                    priority: true,
+                    targetDate: true,
+                    completed: true,
+                    completedOn: true,
+                    active: true,
+                    partOfLine: true,
+                    timeboxes: {
+                      orderBy: {
                         startTime: 'asc'
-                    },
-                    where: {
-                        startTime: {
-                            gte: data.startOfWeek,
-                            lte: data.endOfWeek
-                        }
-                    },
-                    select: {
+                      },
+                      where: {
+                        OR: [{reoccuringID: null}, {NOT: {reoccuringID: null}}]
+                      },
+                      select: {
                         title: true,
                         description: true,
                         startTime: true,
@@ -79,49 +42,88 @@ router.get('/', async (req, res) => {
                         numberOfBoxes: true,
                         color: true,
                         id: true,
+                        isTimeblock: true,
                         recordedTimeBoxes: {
-                            select: {
-                                id: true,
-                                recordedStartTime: true,
-                                timeBoxID: true,
-                                timeBox: { select: { title: true, description: true }}
-                            }
+                          select: {
+                            id: true,
+                            timeBox: { select: { id: true, title: true, description: true }}
+                          }
                         },
-                        goalID: true,
                         reoccuring: {
-                            select: {
-                                id: true,
-                                reoccurFrequency: true,
-                                weeklyDay: true
-                            }
+                          select: {
+                            id: true,
+                            startOfDayRange: true,
+                            endOfDayRange: true,
+                          }
                         },
-                        goalPercentage: true
+                        goalPercentage: true,
+                        goalID: true
+                      },
                     }
+                  },
                 },
-                recordedTimeboxes: {
-                    orderBy: {
-                        recordedStartTime: 'asc'
-                    },
-                    where: {
-                        recordedStartTime: {
-                            gte: data.startOfWeek,
-                            lte: data.endOfWeek
-                        }
-                    },
-                    select: {
+                timeboxes: {
+                  orderBy: {
+                    startTime: 'asc'
+                  },
+                  where: {
+                    startTime: {
+                      gte: data.startOfWeek,
+                      lte: data.endOfWeek
+                    }
+                  },
+                  select: {
+                    title: true,
+                    description: true,
+                    startTime: true,
+                    endTime: true,
+                    numberOfBoxes: true,
+                    color: true,
+                    id: true,
+                    isTimeblock: true,
+                    recordedTimeBoxes: {
+                      select: {
                         id: true,
                         recordedStartTime: true,
-                        recordedEndTime: true,
-                        timeBox: {
-                            select: {
-                                id: true, 
-                                title: true, 
-                                description: true,
-                                startTime: true,
-                                endTime: true,
-                            }
-                        }
+                        timeBoxID: true,
+                        timeBox: { select: { title: true, description: true }}
+                      }
+                    },
+                    goalID: true,
+                    reoccuring: {
+                      select: {
+                        id: true,
+                        startOfDayRange: true,
+                        endOfDayRange: true,
+                      }
+                    },
+                    goalPercentage: true
+                  }
+                },
+                recordedTimeboxes: {
+                  orderBy: {
+                    recordedStartTime: 'asc'
+                  },
+                  where: {
+                    recordedStartTime: {
+                      gte: data.startOfWeek,
+                      lte: data.endOfWeek
                     }
+                  },
+                  select: {
+                    id: true,
+                    recordedStartTime: true,
+                    recordedEndTime: true,
+                    timeBox: {
+                      select: {
+                        id: true, 
+                        title: true, 
+                        description: true,
+                        startTime: true,
+                        endTime: true,
+                      }
+                    }
+                  }
                 }
             },
         });
