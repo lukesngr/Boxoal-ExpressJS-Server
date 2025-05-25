@@ -1,1 +1,2 @@
-Express.js website backend made so mobile app of boxoal has somewhere to call to
+NOT USING ANYMORE AS BACKEND
+USING NEXT API ROUTES TO SAVE PAYING FOR AN ADDITONAL INSTANCE
